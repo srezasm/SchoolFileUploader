@@ -3,26 +3,15 @@ const formElement = document.getElementById("form");
 function handleChange(id) {
     var data = new FormData();
     data.append("file", document.getElementById(id).files[0]);
-    // document.getElementById(id).setAttribute("disabled", "true");
 
+    // send upload file request to file.io
     fetch("https://file.io/", {
         method: "POST",
         body: data,
     })
         .then((response) => {
+            // make qr-code
             response.json().then((res) => {
-                // var qrDiv = document.getElementById("qr-div");
-                // var qrId = `${id}-qr`;
-                // qrDiv.innerHTML =
-                //     qrDiv.innerHTML +
-                //     `<div class="mt-4"> <small>${res.name}</small><div class="mt-1 mb-1" id="${qrId}"></div> <small>${res.link}</small> </div>`;
-
-                // var qrcode = new QRCode(
-                //     document.getElementById(qrId),
-                //     res.link
-                // );
-                // qrcode.makecode();
-
                 var qrDiv = document.getElementById("qr-div");
                 var qrId = `${id}-qr`;
                 qrDiv.innerHTML =
@@ -36,7 +25,6 @@ function handleChange(id) {
                     `</div>` +
                     `</div>`;
 
-
                 var qrcode = new QRCode(
                     document.getElementById(qrId),
                     res.link
@@ -45,7 +33,9 @@ function handleChange(id) {
             });
         })
         .catch((error) => {
-            console.error("Error:", error);
+            var qrDiv = document.getElementById("qr-div");
+            qrDiv.innerHTML = qrDiv.innerHTML +
+                `Error: ${error}`
         });
 
     // handle add new file inputs
