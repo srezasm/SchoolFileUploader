@@ -1,4 +1,4 @@
-input[type="file"] {
+/* input[type="file"] {
     color: transparent;
 }
 input[type="file"]::-webkit-file-upload-button {
@@ -27,4 +27,4 @@ input[type="file"]:active {
 }
 input[type="file"]:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-}
+} */

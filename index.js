@@ -3,7 +3,7 @@ const formElement = document.getElementById("form");
 function handleChange(id) {
     var data = new FormData();
     data.append("file", document.getElementById(id).files[0]);
-    document.getElementById(id).setAttribute("disabled", "true");
+    // document.getElementById(id).setAttribute("disabled", "true");
 
     fetch("https://file.io/", {
         method: "POST",
@@ -17,7 +17,10 @@ function handleChange(id) {
                     qrDiv.innerHTML +
                     `<div class="mt-4"> <small>${res.name}</small><div class="mt-1 mb-1" id="${qrId}"></div> <small>${res.link}</small> </div>`;
 
-                var qrcode = new QRCode(document.getElementById(qrId), res.link);
+                var qrcode = new QRCode(
+                    document.getElementById(qrId),
+                    res.link
+                );
                 qrcode.makecode();
             });
         })
@@ -27,6 +30,7 @@ function handleChange(id) {
 
     // handle add new file inputs
     var newId = id + 1;
-    var element = `<input id="${newId}" class="m-2" type="file" onchange="handleChange(${newId})">`;
-    formElement.innerHTML = formElement.innerHTML + element;
+    var element = document.getElementById(id);
+    element.id = newId;
+    element.setAttribute("onchange", `handleChange(${newId})`);
 }
