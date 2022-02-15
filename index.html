@@ -15,17 +15,29 @@
     </head>
     <body>
         <div class="container">
-            <form id="form" class="row" method="POST" enctype="multipart/form-data">
-                <input id="1" class="m-2 form-control" type="file" onchange="handleChange(1)" />
+            <form
+                id="form"
+                class="row"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                <input
+                    id="1"
+                    class="m-2 form-control"
+                    type="file"
+                    onchange="handleChange(1)"
+                />
             </form>
         </div>
 
         <div class="container">
-            <div id="qr-div" class="row"></div>
+            <div id="qr-div" class="row">
+                
+            </div>
         </div>
     </body>
 
-    <script src="lib/qrcode.min.js"></script>
+    <script src="src/qrcode.min.js"></script>
     <script src="index.js"></script>
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
